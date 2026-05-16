@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fezzlycraft</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:linear-gradient(
+        180deg,
+        #fff8d6 0%,
+        #ffe77a 100%
+      );
+      min-height:100vh;
+      overflow-x:hidden;
+      color:#111827;
+    }
+
+    /* =========================
+       MENU BUTTON
+    ========================= */
+
+    .menu-btn{
+      position:fixed;
+      top:18px;
+      left:18px;
+      width:56px;
+      height:56px;
+      border:none;
+      border-radius:18px;
+      background:#ffffff;
+      color:#eab308;
+      font-size:30px;
+      cursor:pointer;
+      z-index:3000;
+      box-shadow:0 5px 18px rgba(0,0,0,0.12);
+      transition:0.25s;
+    }
+
+    .menu-btn:hover{
+      transform:scale(1.05);
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:-290px;
+      width:270px;
+      height:100%;
+      background:#fffdf6;
+      padding:95px 20px 30px;
+      transition:0.3s;
+      z-index:2000;
+      box-shadow:0 0 25px rgba(0,0,0,0.15);
+    }
+
+    .sidebar.active{
+      left:0;
+    }
+
+    .sidebar-title{
+      font-size:30px;
+      font-weight:800;
+      margin-bottom:28px;
+      text-align:center;
+    }
+
+    .yellow{
+      color:#eab308;
+      text-shadow:0 2px 10px rgba(234,179,8,0.3);
+    }
+
+    .white{
+      color:#ffffff;
+      text-shadow:0 2px 8px rgba(0,0,0,0.45);
+    }
+
+    .sidebar a{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+      color:#111827;
+      background:#ffffff;
+      padding:14px;
+      border-radius:18px;
+      margin-bottom:14px;
+      transition:0.25s;
+      font-weight:700;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .sidebar a:hover{
+      background:#facc15;
+      transform:translateX(5px);
+    }
+
+    .sidebar a img{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      object-fit:cover;
+      background:white;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .container{
+      width:100%;
+      max-width:470px;
+      margin:auto;
+      padding:115px 20px 45px;
+      text-align:center;
+    }
+
+    /* =========================
+       LOGO
+    ========================= */
+
+    .logo{
+      width:140px;
+      height:140px;
+      object-fit:cover;
+      border-radius:34px;
+      border:5px solid #facc15;
+      box-shadow:0 0 30px rgba(250,204,21,0.4);
+      margin-bottom:18px;
+    }
+
+    /* =========================
+       SERVER NAME
+    ========================= */
+
+    .server-name{
+      font-size:46px;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .desc{
+      margin-top:12px;
+      color:#374151;
+      font-size:15px;
+      font-weight:700;
+      line-height:1.6;
+      background:rgba(255,255,255,0.7);
+      padding:14px;
+      border-radius:18px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* =========================
+       SERVER INFO
+    ========================= */
+
+    .server-box{
+      margin-top:34px;
+      background:#ffffff;
+      border-radius:28px;
+      padding:24px;
+      box-shadow:0 8px 28px rgba(0,0,0,0.1);
+    }
+
+    .server-box h3{
+      color:#d97706;
+      margin-bottom:18px;
+      font-size:24px;
+      font-weight:800;
+    }
+
+    .info{
+      background:#fff8dc;
+      padding:16px;
+      border-radius:18px;
+      margin-bottom:14px;
+      color:#111827;
+      font-size:16px;
+      font-weight:700;
+      word-break:break-word;
+      border:2px solid rgba(250,204,21,0.18);
+    }
+
+    /* =========================
+       JOIN BUTTON
+    ========================= */
+
+    .join-btn{
+      display:block;
+      text-decoration:none;
+      background:linear-gradient(
+        135deg,
+        #fde047,
+        #facc15
+      );
+      color:#111827;
+      padding:16px;
+      border-radius:20px;
+      margin-top:18px;
+      font-size:16px;
+      font-weight:800;
+      transition:0.25s;
+      box-shadow:0 6px 18px rgba(250,204,21,0.28);
+    }
+
+    .join-btn:hover{
+      transform:translateY(-3px) scale(1.02);
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .links{
+      margin-top:32px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .link-btn{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      text-decoration:none;
+      color:#111827;
+      background:#ffffff;
+      padding:17px;
+      border-radius:22px;
+      font-size:16px;
+      font-weight:800;
+      transition:0.25s;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .link-btn:hover{
+      transform:translateY(-3px) scale(1.02);
+      background:#facc15;
+    }
+
+    .link-btn img{
+      width:56px;
+      height:56px;
+      border-radius:16px;
+      object-fit:cover;
+      background:white;
+    }
+
+    footer{
+      margin-top:38px;
+      color:#374151;
+      font-size:13px;
+      font-weight:700;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- MENU -->
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+
+    <div class="sidebar-title">
+      <span class="yellow">Fezzly</span><span class="white">craft</span>
+    </div>
+
+    <a href="https://store.fezzlycraft.my.id">
+      <img src="https://i.imgur.com/mOHyGe3.png">
+      <span>Store</span>
+    </a>
+
+    <a href="https://whatsapp.com/channel/0029VbD71pQFi8xWSc3KVh3w">
+      <img src="https://i.imgur.com/Fx5YF2a.jpeg">
+      <span>WhatsApp</span>
+    </a>
+
+    <a href="https://discord.gg/RagPJqxtFN">
+      <img src="https://i.imgur.com/VOBXO9K.jpeg">
+      <span>Discord</span>
+    </a>
+
+    <a href="https://fezzlycraft.my.id/rules">
+      <img src="https://i.imgur.com/mOHyGe3.png">
+      <span>Rules</span>
+    </a>
+
+  </div>
+
+  <!-- MAIN -->
+  <div class="container">
+
+    <!-- LOGO -->
+    <img src="https://i.imgur.com/mOHyGe3.png" class="logo">
+
+    <!-- SERVER NAME -->
+    <div class="server-name">
+      <span class="yellow">Fezzly</span><span class="white">craft</span>
+    </div>
+
+    <!-- DESKRIPSI -->
+    <div class="desc">
+      Fezzlycraft adalah server minecraft yang bertemakan Survival Economy
+    </div>
+
+    <!-- SERVER INFO -->
+    <div class="server-box">
+
+      <h3>🌐 SERVER INFO</h3>
+
+      <div class="info">
+        IP: fezzlycraft.my.id
+      </div>
+
+      <div class="info">
+        Port: 19132
+      </div>
+
+      <!-- JOIN SERVER -->
+      <a 
+        href="minecraft://?addExternalServer=Fezzlycraft|fezzlycraft.my.id:19132"
+        class="join-btn"
+      >
+        🎮 JOIN SERVER
+      </a>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="links">
+
+      <a href="https://store.fezzlycraft.my.id" class="link-btn">
+        <img src="https://i.imgur.com/mOHyGe3.png">
+        <span>🏪 STORE SERVER</span>
+      </a>
+
+      <a href="https://whatsapp.com/channel/0029VbD71pQFi8xWSc3KVh3w" class="link-btn">
+        <img src="https://i.imgur.com/Fx5YF2a.jpeg">
+        <span>💬 WHATSAPP</span>
+      </a>
+
+      <a href="https://discord.gg/RagPJqxtFN" class="link-btn">
+        <img src="https://i.imgur.com/VOBXO9K.jpeg">
+        <span>🎮 DISCORD</span>
+      </a>
+
+      <a href="https://fezzlycraft.my.id/rules" class="link-btn">
+        <img src="https://i.imgur.com/mOHyGe3.png">
+        <span>📜 RULES</span>
+      </a>
+
+    </div>
+
+    <footer>
+      © 2026 Fezzlycraft
+    </footer>
+
+  </div>
+
+  <script>
+
+    function toggleMenu(){
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    // CLOSE MENU WHEN CLICK OUTSIDE
+    document.addEventListener("click", function(e){
+
+      const sidebar = document.getElementById("sidebar");
+      const menuBtn = document.querySelector(".menu-btn");
+
+      if(
+        !sidebar.contains(e.target) &&
+        !menuBtn.contains(e.target)
+      ){
+        sidebar.classList.remove("active");
+      }
+
+    });
+
+  </script>
+
+</body>
+  </html>
